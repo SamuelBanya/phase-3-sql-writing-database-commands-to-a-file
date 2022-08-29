@@ -1,0 +1,50 @@
+These are the commands I used:
+#+begin_src sql
+sqlite3 pets_database.db
+
+.quit
+#+end_src
+
+
+I placed the following in the contents of a file called '01_create_cats_table.sql' in the root of the project directory:
+#+begin_src sql
+CREATE TABLE cats (
+  id INTEGER PRIMARY KEY,
+    name TEXT,
+    age INTEGER
+);
+#+end_src
+
+I then dumped the contents of that file above into a related database with this command:
+#+begin_src sql
+samuelbanya@Samuels-MBP ~/hub/Development/code/phase-3/phase-3-sql-writing-database-commands-to-a-file $ sqlite3 pets_database.db < 01_create_cats_table.sql
+#+end_src
+
+I then re-entered the database with this command:
+#+begin_src sql
+sqlite3 pets_database.db
+#+end_src
+
+I then created a separate '.sql' file called '02_add_column_to_cats.sql' with the following contents so that I can continue to alter the database but still stay within the realm of a text editor:
+#+begin_src sql
+ALTER TABLE cats ADD COLUMN breed TEXT;
+#+end_src
+
+I then ran the following commands so that I can alter the database with this new 'ALTER TABLE' command listed above which adds a new 'breed' column:
+#+begin_src sql
+samuelbanya@Samuels-MBP ~/hub/Development/code/phase-3/phase-3-sql-writing-database-commands-to-a-file $ sqlite3 pets_database.db < 02_add_column_to_cats.sql
+#+end_src
+
+I then checked to make sure that the updated database includes the new 'breed' column with these two commands:
+#+begin_src sql
+samuelbanya@Samuels-MBP ~/hub/Development/code/phase-3/phase-3-sql-writing-database-commands-to-a-file $ sqlite3 pets_database.db
+
+SQLite version 3.37.0 2021-12-09 01:34:53
+Enter ".help" for usage hints.
+sqlite> .schema
+CREATE TABLE cats (
+  id INTEGER PRIMARY KEY,
+    name TEXT,
+    age INTEGER
+, breed TEXT);
+#+end_src
